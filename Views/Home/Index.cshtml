@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<section class="hero">
+    <div class="container text-center">
+        <h1>Welcome to FPT Job Match</h1>
+        <h2>
+            <a asp-area="" asp-controller="Jobs" asp-action="Index" class="btn btn-outline-secondary btn-lg">Job List </a>
+        </h2>
+        <p>The leading job connection platform.</p>
+        <img src="https://images.vietnamworks.com/pictureofcompany/14/11129135.png" alt="FPT JobMatch Banner" style="width:100%; height:auto;">
+    </div>
+
+</section>
+
+<section class="features">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h2>great job opportunity.</h2>
+                <p>Search thousands of job opportunities from top companies.</p>
+            </div>
+            <div class="col-md-4">
+                <h2>Reputable employer</h2>
+                <p>Connect with leading employers in Vietnam.</p>
+            </div>
+            <div class="col-md-4">
+                <h2>Dedicated support</h2>
+                <p>Get support from our team of experts.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<footer class="footer bg-light text-center">
+    <div class="container">
+        <p class="text-muted">&copy; 2024 FPT Job Match. All rights reserved.</p>
+    </div>
+</footer>
+
+<!-- Thêm các tập tin CSS và JS cần thiết -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+

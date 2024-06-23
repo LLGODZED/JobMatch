@@ -1,0 +1,137 @@
+﻿@model IEnumerable<Jobmatch.Models.Job>
+
+@{
+    ViewData["Title"] = "Welcome to Job list";
+}
+
+<h1 class="text-center my-4">@ViewData["Title"]</h1>
+
+
+<tr>
+    <th colspan="2">
+        <p>
+            @if (User.Identity.IsAuthenticated && User.IsInRole("Admin,Employer"))
+            {
+                <a asp-action="Create" class="btn btn-primary">Create New</a>
+            }
+        </p>
+        <a class="btn btn-outline-success" asp-controller="Jobs" asp-action="SortAsc">Salary(0-2000)</a>
+    </th>
+    <th colspan="2">
+        <a class="btn btn-outline-warning" asp-controller="Jobs" asp-action="SortDesc">Salary(2000-0)</a>
+    </th>
+
+    <form asp-action="Search" method="post">
+        <input type="text" name="keyword" placeholder="Enter company name" />
+        <button type="submit">Search</button>
+    </form>
+<tr>
+
+    <div class="menu">
+        <label for="category">Select a category:</label>
+        <select id="category" onchange="displayJobs()">
+            <option value="IT">IT</option>
+            <option value="Business">Business</option>
+            <option value="Education">Education</option>
+        </select>
+    </div>
+    <div id="jobs">
+        
+    </div>
+
+    <script>
+        function displayJobs() {
+            var category = document.getElementById("category").value;
+            var jobsElement = document.getElementById("jobs");
+
+            
+            jobsElement.innerHTML = "";
+
+
+            }
+        }
+    </script>
+
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <img src="@item.Image" class="card-img-top" alt="Job Image" style="height: 200px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
+                    <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
+                    <p class="card-text"><strong>Requirements:</strong> @Html.DisplayFor(modelItem => item.Requirment)</p>
+                    <p class="card-text"><strong>Address:</strong> @Html.DisplayFor(modelItem => item.Address)</p>
+                    <p class="card-text"><strong>Salary:</strong> @Html.DisplayFor(modelItem => item.Salary)</p>
+                    <p class="card-text"><strong>Category:</strong> @Html.DisplayFor(modelItem => item.Category.Name)</p>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex justify-content-between">
+                        @if (User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Employer")))
+                        {
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-primary btn-sm">Edit</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm">Delete</a>
+                        }
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-secondary btn-sm">Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    .card {
+        border-radius: 10px;
+        transition: box-shadow 0.3s ease;
+    }
+
+        .card:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+    .card-title {
+        font-size: 1.25rem;
+        font-weight: bold;
+    }
+
+    .card-text {
+        font-size: 1rem;
+    }
+
+    .btn-outline-primary {
+        color: #007bff;
+        border-color: #007bff;
+    }
+
+        .btn-outline-primary:hover {
+            color: #fff;
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+    .btn-outline-secondary {
+        color: #6c757d;
+        border-color: #6c757d;
+    }
+
+        .btn-outline-secondary:hover {
+            color: #fff;
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+
+    .btn-outline-danger {
+        color: #dc3545;
+        border-color: #dc3545;
+    }
+
+        .btn-outline-danger:hover {
+            color: #fff;
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+</style>
+

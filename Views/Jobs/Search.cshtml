@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Jobmatch.Models.Job>
+
+@{
+    ViewData["Title"] = "Job Search";
+}
+
+<h2>Job Search</h2>
+
+<form asp-action="Search" method="post">
+    <input type="text" name="keyword" placeholder="Enter company name" />
+    <button type="submit">Search</button>
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Requirment</th>
+            <th>Address</th>
+            <th>Salary</th>
+            <th>Image</th>
+            <th>Category</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var job in Model)
+        {
+            <tr>
+                <td>@job.Title</td>
+                <td>@job.Description</td>
+                <td>@job.Requirment</td>
+                <td>@job.Address</td>
+                <td>@job.Salary</td>
+                <td><img src="@job.Image" alt="Job Image" style="width:100px;height:auto;" /></td>
+                <td>@job.Category.Name</td>
+            </tr>
+        }
+    </tbody>
+</table>
